@@ -160,3 +160,18 @@
 .dark a:hover {
   filter: brightness(1.1);
 }
+
+/* Hide Google Translate banner and elements */
+.goog-te-banner-frame,
+.goog-te-balloon-frame,
+.skiptranslate iframe {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+.goog-te-gadget {
+  display: none !important;
+}

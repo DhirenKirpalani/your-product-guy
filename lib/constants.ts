@@ -67,34 +67,34 @@ export const PAIN_POINTS = [
 
 export const SERVICES = [
   {
-    title: "WhatsApp AI Auto-Reply",
-    description: "Reply instantly to customer inquiries 24/7.",
+    title: "Respond to Customers Instantly",
+    description: "Reply to WhatsApp inquiries automatically, 24/7.",
     outcome: "Never miss a customer message again.",
   },
   {
-    title: "AI Customer Service",
-    description: "Automate repetitive support conversations.",
-    outcome: "Reduce support workload by 70%.",
-  },
-  {
-    title: "AI Sales Follow-Up",
-    description: "Recover lost leads automatically.",
+    title: "Recover Lost Leads Automatically",
+    description: "Follow up with prospects who didn't respond.",
     outcome: "Convert more prospects with timely follow-ups.",
   },
   {
-    title: "AI Appointment Booking",
-    description: "Reduce missed appointments and automate reminders.",
+    title: "Automate Bookings & Reminders",
+    description: "Let customers book appointments automatically.",
     outcome: "Eliminate double bookings and no-shows.",
   },
   {
-    title: "AI Invoice Generation",
-    description: "Automate invoices and payment reminders.",
-    outcome: "Get paid faster with automated workflows.",
+    title: "Handle Repetitive Questions",
+    description: "Automate answers to common customer questions.",
+    outcome: "Reduce support workload by 70%.",
   },
   {
-    title: "AI Social Media Generation",
-    description: "Generate captions, hooks, and content workflows.",
-    outcome: "Consistent, strategic content at scale.",
+    title: "Send Invoices & Payment Reminders",
+    description: "Automate billing and follow-up on payments.",
+    outcome: "Get paid faster with automated reminders.",
+  },
+  {
+    title: "Generate Social Media Content",
+    description: "Create captions and posts automatically.",
+    outcome: "Save hours on content creation weekly.",
   },
 ];
 

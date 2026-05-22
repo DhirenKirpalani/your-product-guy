@@ -15,20 +15,17 @@ export default function CTASection() {
           viewport={{ once: true }}
           className="text-center space-y-8"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
-            Your Business Shouldn't Run on Manual Workflows Anymore
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground">
+            Stop Losing Customers to Slow Manual Processes
           </h2>
 
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            Automate customer communication, bookings, follow-ups, invoicing, and operational
-            workflows using AI systems built for Indonesian SMEs.
+            Let's talk about how automation can improve your operations. Free consultation, no pressure.
           </p>
 
           <motion.div variants={STAGGER_ITEM} className="pt-4">
             <a
-              href="https://wa.me/62812345678"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#onboarding"
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-foreground text-background hover:bg-foreground/90 px-6 py-3 font-medium transition-all"
             >
               Book Free Automation Audit

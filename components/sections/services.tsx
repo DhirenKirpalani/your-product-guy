@@ -12,7 +12,7 @@ import {
   Share2,
 } from "lucide-react";
 
-const ICONS = [MessageCircle, Headphones, TrendingUp, Calendar, Receipt, Share2];
+const ICONS = [MessageCircle, TrendingUp, Calendar, Headphones, Receipt, Share2];
 
 export default function ServicesSection() {
   return (
@@ -20,11 +20,11 @@ export default function ServicesSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-12 sm:mb-16 max-w-2xl">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-3 sm:mb-4">
-            AI Systems Built for Real Business Operations
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-foreground mb-3 sm:mb-4">
+            Stop Losing Customers to Slow Operations
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground">
-            Six integrated automation modules designed for Indonesian businesses.
+            We automate the daily tasks that waste your time and cost you money.
           </p>
         </div>
 
