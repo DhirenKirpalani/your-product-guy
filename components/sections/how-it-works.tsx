@@ -7,28 +7,23 @@ import { CheckCircle2 } from "lucide-react";
 const WORKFLOW_STEPS = [
   {
     number: "1",
-    title: "Customer Inquiry",
-    description: "Customer sends WhatsApp message",
+    title: "Customers message your business",
+    description: "Via WhatsApp, just like they do now",
   },
   {
     number: "2",
-    title: "AI Responds Instantly",
-    description: "Automated response within seconds",
+    title: "System responds instantly",
+    description: "Answers questions, provides information, 24/7",
   },
   {
     number: "3",
-    title: "Lead Data Captured",
-    description: "Information organized automatically",
+    title: "Leads organized automatically",
+    description: "Contact info and requests saved for you",
   },
   {
     number: "4",
-    title: "Action Triggered",
-    description: "Booking, follow-up, or classification",
-  },
-  {
-    number: "5",
-    title: "Business Owner Notified",
-    description: "All leads organized in dashboard",
+    title: "Follow-ups run automatically",
+    description: "Reminders and check-ins happen on schedule",
   },
 ];
 
@@ -41,11 +36,11 @@ export default function HowItWorksSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-16 text-center max-w-2xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
-            How The System Works
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground mb-4">
+            How It Works
           </h2>
           <p className="text-lg text-muted-foreground">
-            Real-time operational automation from inquiry to organized leads.
+            Simple automation that works in the background while you focus on your business.
           </p>
         </div>
 

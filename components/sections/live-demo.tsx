@@ -12,33 +12,43 @@ const DEMO_TABS = [
     label: "WhatsApp Chat",
     icon: MessageCircle,
     content: (
-      <div className="space-y-4">
+      <div className="space-y-3 p-6 min-h-[450px]">
         <div className="flex justify-start">
-          <div className="max-w-xs bg-muted rounded-2xl p-3">
-            <p className="text-sm text-foreground">
-              Hi, I'd like to book a haircut appointment for tomorrow
-            </p>
-            <p className="text-xs text-muted-foreground mt-1">10:32 AM</p>
+          <div className="max-w-[70%]">
+            <div className="bg-white rounded-2xl rounded-tl-sm p-3 shadow-sm">
+              <p className="text-sm text-gray-800">
+                Hi, I'd like to book a haircut appointment for tomorrow
+              </p>
+            </div>
+            <p className="text-[10px] text-gray-500 mt-1 ml-2">10:32 AM</p>
           </div>
         </div>
         <div className="flex justify-end">
-          <div className="max-w-xs bg-foreground rounded-2xl p-3">
-            <p className="text-sm text-background">
-              Great! We have slots at 10 AM, 2 PM, or 4 PM. Which works best? 💇‍♀️
-            </p>
-            <p className="text-xs text-background/70 mt-1">10:32 AM</p>
+          <div className="max-w-[70%]">
+            <div className="bg-[#d9fdd3] rounded-2xl rounded-tr-sm p-3 shadow-sm">
+              <p className="text-sm text-gray-800">
+                Great! We have slots at 10 AM, 2 PM, or 4 PM. Which works best? 💇
+              </p>
+            </div>
+            <p className="text-[10px] text-gray-500 mt-1 mr-2 text-right">10:32 AM</p>
           </div>
         </div>
         <div className="flex justify-start">
-          <div className="max-w-xs bg-muted rounded-2xl p-3">
-            <p className="text-sm text-foreground">2 PM please!</p>
-            <p className="text-xs text-muted-foreground mt-1">10:34 AM</p>
+          <div className="max-w-[70%]">
+            <div className="bg-white rounded-2xl rounded-tl-sm p-3 shadow-sm">
+              <p className="text-sm text-gray-800">2 PM please!</p>
+            </div>
+            <p className="text-[10px] text-gray-500 mt-1 ml-2">10:34 AM</p>
           </div>
         </div>
         <div className="flex justify-end">
-          <div className="max-w-xs bg-foreground rounded-2xl p-3">
-            <p className="text-sm text-background">Perfect! Confirmed for tomorrow at 2 PM. See you then! ✓</p>
-            <p className="text-xs text-background/70 mt-1">10:34 AM</p>
+          <div className="max-w-[70%]">
+            <div className="bg-[#d9fdd3] rounded-2xl rounded-tr-sm p-3 shadow-sm">
+              <p className="text-sm text-gray-800">
+                Perfect! Confirmed for tomorrow at 2 PM. See you then! ✓
+              </p>
+            </div>
+            <p className="text-[10px] text-gray-500 mt-1 mr-2 text-right">10:34 AM</p>
           </div>
         </div>
       </div>
@@ -186,11 +196,11 @@ export default function LiveDemoSection() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="mb-16 text-center max-w-2xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
+        <div className="mb-16 text-center max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground mb-4">
             Live AI Workflow Demo
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg md:text-xl text-muted-foreground">
             See how the system works in real-time with actual workflow logic.
           </p>
         </div>
@@ -201,10 +211,10 @@ export default function LiveDemoSection() {
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
-          className="max-w-2xl mx-auto"
+          className="max-w-4xl mx-auto"
         >
           {/* Tabs */}
-          <div className="flex gap-2 mb-6 border-b border-border overflow-x-auto">
+          <div className="flex gap-2 mb-4 border-b border-border overflow-x-auto">
             {DEMO_TABS.map((tab) => {
               const Icon = tab.icon;
               return (
@@ -225,7 +235,9 @@ export default function LiveDemoSection() {
           </div>
 
           {/* Tab Content */}
-          <Card className="p-6 min-h-96 border border-border">
+          <Card className={`min-h-96 border border-border overflow-hidden ${
+            activeTab === 'chat' ? 'p-0 bg-[#efeae2]' : 'p-6'
+          }`}>
             <motion.div
               key={activeTab}
               initial={{ opacity: 0, y: 10 }}
