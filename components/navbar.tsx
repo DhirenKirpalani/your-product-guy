@@ -15,7 +15,8 @@ const NAVIGATION = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
+  const rawPathname = usePathname();
+  const pathname = rawPathname.replace(/\/$/, "") || "/";
 
   return (
     <nav className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/70">
@@ -37,14 +38,14 @@ export default function Navbar() {
 
           <div className="hidden md:flex items-center gap-1">
             {NAVIGATION.map((item) => {
-              const active = pathname === item.href;
+              const active = pathname === item.href || pathname.startsWith(item.href + "/");
               return (
                 <Link
                   key={item.name}
                   href={item.href}
                   className={`text-sm font-medium transition-all px-3 py-1.5 rounded-md ${
                     active
-                      ? "bg-foreground text-background"
+                      ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
                       : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                   }`}
                 >
@@ -52,6 +53,17 @@ export default function Navbar() {
                 </Link>
               );
             })}
+            <div className="w-px h-4 bg-border mx-2" />
+            <Link
+              href="/audit"
+              className={`text-sm font-medium transition-all px-3 py-1.5 rounded-md border ${
+                pathname === "/audit"
+                  ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 border-transparent"
+                  : "border-border text-foreground hover:bg-secondary"
+              }`}
+            >
+              Free Audit
+            </Link>
             <div className="w-px h-4 bg-border mx-2" />
             <Link
               href="/#contribute"
@@ -76,18 +88,41 @@ export default function Navbar() {
         {isOpen && (
           <div className="md:hidden py-4 border-t border-border">
             <div className="flex flex-col gap-4">
-              {NAVIGATION.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className={`text-sm transition-colors ${
-                    pathname === item.href ? "text-foreground" : "text-muted-foreground"
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {NAVIGATION.map((item) => {
+                const active = pathname === item.href || pathname.startsWith(item.href + "/");
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`text-sm font-medium transition-all px-3 py-1.5 rounded-md ${
+                      active
+                        ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
+                        : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                );
+              })}
+              <Link
+                href="/audit"
+                onClick={() => setIsOpen(false)}
+                className={`text-sm font-medium transition-all px-3 py-1.5 rounded-md border w-fit ${
+                  pathname === "/audit"
+                    ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 border-transparent"
+                    : "border-border text-foreground hover:bg-secondary"
+                }`}
+              >
+                Free Audit
+              </Link>
+              <Link
+                href="/#contribute"
+                onClick={() => setIsOpen(false)}
+                className="text-sm font-medium text-muted-foreground/50 hover:text-muted-foreground transition-all px-3 py-1.5 rounded-md w-fit"
+              >
+                Contribute
+              </Link>
             </div>
           </div>
         )}
