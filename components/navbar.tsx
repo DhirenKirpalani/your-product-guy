@@ -35,7 +35,7 @@ export default function Navbar() {
             </span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-1">
             {NAVIGATION.map((item) => {
               const active = pathname === item.href;
               return (
@@ -52,6 +52,13 @@ export default function Navbar() {
                 </Link>
               );
             })}
+            <div className="w-px h-4 bg-border mx-2" />
+            <Link
+              href="/#contribute"
+              className="text-sm font-medium text-muted-foreground/50 hover:text-muted-foreground hover:bg-secondary transition-all px-3 py-1.5 rounded-md"
+            >
+              Contribute
+            </Link>
           </div>
 
           <div className="flex items-center gap-4">
