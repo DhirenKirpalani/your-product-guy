@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Zap, BookOpen, Radio, ArrowRight, MessageSquare } from "lucide-react";
+import { Zap, BookOpen, Radio, ArrowRight, MessageSquare, CheckCircle, Send } from "lucide-react";
 import Link from "next/link";
 import FooterNew from "@/components/sections/footer-new";
 
@@ -48,7 +48,7 @@ function OperationalFlow() {
       <div className="p-4 space-y-0.5">
         {FLOW_STEPS.map((step, i) => (
           <motion.div key={step.label}
-            animate={{ backgroundColor: active === i ? "rgba(0,0,0,0.025)" : "transparent" }}
+            animate={{ backgroundColor: active === i ? "rgba(0,0,0,0.025)" : "rgba(0,0,0,0)" }}
             transition={{ duration: 0.35 }}
             className="flex items-center gap-3 px-3 py-2.5 rounded-lg"
           >
@@ -335,10 +335,28 @@ const ROLES = [
 ];
 
 function Contribute() {
+  const [form, setForm] = useState({ name: "", email: "", role: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "loading" | "sent" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "contribute", ...form }),
+      });
+      setStatus(res.ok ? "sent" : "error");
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <section id="contribute" className="border-b border-border bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20 md:py-28">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-16 lg:gap-24 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
           <div>
             <motion.div initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }}
@@ -361,7 +379,7 @@ function Contribute() {
                   initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex items-center justify-between py-5 border-b border-border group">
+                  className="flex items-center justify-between py-5 border-b border-border">
                   <div>
                     <div className="text-sm font-semibold text-foreground tracking-tight">{role.label}</div>
                     <div className="text-xs text-muted-foreground/50 font-mono mt-0.5">{role.sub}</div>
@@ -374,19 +392,53 @@ function Contribute() {
 
           <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:w-72 lg:pt-24">
+            className="lg:pt-20">
             <p className="text-sm text-muted-foreground/70 leading-relaxed mb-8">
-              This platform is being built in public. If you want to contribute
-              content, code, or ideas — reach out directly.
+              This platform is being built in public. Drop your details and we&apos;ll
+              be in touch.
             </p>
-            <a href="https://wa.me/6287809998198?text=Hi%2C%20I%27d%20like%20to%20contribute%20to%20Your%20Product%20Guy"
-              target="_blank" rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2.5 px-5 py-2.5 border border-foreground/20 rounded-lg text-sm font-medium text-foreground hover:border-foreground/60 hover:bg-secondary/50 transition-all">
-              <MessageSquare className="h-4 w-4 text-muted-foreground/50" />
-              Get in touch
-              <ArrowRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-foreground group-hover:translate-x-0.5 transition-all" />
-            </a>
-            <p className="mt-3 text-[10px] text-muted-foreground/30 font-mono">via WhatsApp · usually replies same day</p>
+
+            {status === "sent" ? (
+              <div className="flex items-center gap-3 py-4 border-t border-border">
+                <CheckCircle className="h-4 w-4 text-foreground/60" />
+                <p className="text-sm text-muted-foreground">Thanks — we&apos;ll reach out shortly.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-3">
+                <input
+                  type="text" required placeholder="Your name"
+                  value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                  className="w-full px-4 py-3 bg-secondary/50 border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground/30 transition-colors"
+                />
+                <input
+                  type="email" required placeholder="Your email"
+                  value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                  className="w-full px-4 py-3 bg-secondary/50 border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground/30 transition-colors"
+                />
+                <select
+                  required value={form.role} onChange={e => setForm(f => ({ ...f, role: e.target.value }))}
+                  className="w-full px-4 py-3 bg-secondary/50 border border-border rounded-lg text-sm text-foreground focus:outline-none focus:border-foreground/30 transition-colors">
+                  <option value="" disabled>Role you&apos;re interested in</option>
+                  {ROLES.map(r => <option key={r.label} value={r.label}>{r.label}</option>)}
+                </select>
+                <textarea
+                  placeholder="Briefly describe what you'd like to contribute (optional)"
+                  rows={3} value={form.message}
+                  onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                  className="w-full px-4 py-3 bg-secondary/50 border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground/30 transition-colors resize-none"
+                />
+                <button type="submit" disabled={status === "loading"}
+                  className="group w-full flex items-center justify-center gap-2.5 px-6 py-3 bg-foreground text-background rounded-lg text-sm font-medium hover:bg-foreground/85 disabled:opacity-50 transition-all">
+                  <Send className="h-4 w-4" />
+                  {status === "loading" ? "Sending…" : "Send Application"}
+                  <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </button>
+                {status === "error" && (
+                  <p className="text-xs text-muted-foreground/50 font-mono">Something went wrong — please try again.</p>
+                )}
+                <p className="text-[10px] text-muted-foreground/30 font-mono pt-1">Usually replies same day</p>
+              </form>
+            )}
           </motion.div>
 
         </div>

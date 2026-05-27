@@ -79,17 +79,76 @@ const SIGNALS: Signal[] = [
     teamSize: "11–50",
     createdAt: "Feb 2025",
   },
+  {
+    id: 17,
+    categories: ["PM", "Execution"],
+    signal: "The roadmap is always '80% done' but nothing ships.",
+    analysis: "Perpetual near-completion is a symptom of scope inflation during delivery. Features accumulate small additions that individually seem trivial but collectively prevent closure. Teams optimise for progress over completion.",
+    impact: "Release cycles extend indefinitely. Stakeholders lose confidence in timelines. Engineers become demotivated by work that never reaches users. Feedback loops break entirely.",
+    system: "Implement a feature freeze policy 2 weeks before any release. Define 'done' explicitly — including QA, documentation, and comms — before development begins. Treat scope additions as new tickets, not amendments.",
+    teamSize: "11–50",
+    createdAt: "Jan 2025",
+  },
+  {
+    id: 16,
+    categories: ["Leadership", "PM"],
+    signal: "Product metrics improve but customer satisfaction stays flat.",
+    analysis: "Metric-reality divergence — a common outcome when teams optimise for easily measurable proxies rather than actual user outcomes. Engagement metrics, session counts, and click rates can all rise while the product becomes less useful.",
+    impact: "Teams celebrate numbers while users quietly churn. Product decisions get made on misleading signals. The gap between internal perception and market reality widens.",
+    system: "Pair every product metric with a direct user signal — NPS, support ticket trends, or qualitative research. Require metric change explanations to include a user evidence component, not just data.",
+    teamSize: "51–200",
+    createdAt: "Jan 2025",
+  },
+  {
+    id: 15,
+    categories: ["Communication", "PM"],
+    signal: "Feedback from users never reaches the product team.",
+    analysis: "Broken feedback loops between customer-facing teams and product. Sales, support, and CS accumulate user insight that stays siloed — often because there's no structured channel or incentive to surface it upward.",
+    impact: "Product built on assumptions rather than evidence. Customer pain points go unaddressed. Customer-facing teams become frustrated at voicing concerns no one acts on.",
+    system: "Create a weekly 'voice of customer' digest shared directly into product planning. Give CS and Sales a lightweight way to tag and submit user feedback. Make it visible when their inputs influence decisions.",
+    teamSize: "11–50",
+    createdAt: "Dec 2024",
+  },
+  {
+    id: 14,
+    categories: ["Engineering", "Execution"],
+    signal: "Technical debt is acknowledged in every sprint and addressed in none.",
+    analysis: "Delivery pressure systematically overrides maintenance investment. Teams acknowledge the debt in retrospectives but cannot justify deprioritising visible feature work in favour of invisible infrastructure improvement.",
+    impact: "Development velocity declines gradually, then suddenly. Bug rates increase. Engineer morale drops as they're asked to build on foundations they know are unstable. Eventually a critical failure forces emergency remediation.",
+    system: "Allocate a fixed percentage of every sprint — typically 20% — to technical health work. Track and report tech debt as a product risk metric alongside feature delivery. Make it non-negotiable.",
+    teamSize: "11–50",
+    createdAt: "Nov 2024",
+  },
+  {
+    id: 13,
+    categories: ["Prioritization", "Leadership"],
+    signal: "Everyone agrees on the problem. Nobody agrees on what to do about it.",
+    analysis: "Diagnosis-to-decision breakdown. Teams can align on symptoms without aligning on root causes or solutions because the latter require committing to a specific model of how the world works — which exposes disagreements that symptom-level discussions avoid.",
+    impact: "Meetings end with vague next steps. Ownership diffuses across the team. The same problem resurfaces in future planning cycles. Decision fatigue increases as alignment never converts to action.",
+    system: "Force explicit hypothesis formation: 'We believe the root cause is X. If we're right, intervention Y should produce result Z by date W.' Require teams to commit to a hypothesis before designing solutions.",
+    teamSize: "51–200",
+    createdAt: "Oct 2024",
+  },
+  {
+    id: 12,
+    categories: ["Meetings", "Communication"],
+    signal: "Status updates take longer to prepare than the actual work.",
+    analysis: "Reporting overhead caused by misaligned trust and visibility infrastructure. When leaders lack confidence in async information systems, they require synchronous updates — which turns reporting into a full-time task that competes with execution.",
+    impact: "High performers spend significant time on performance theatre instead of work. Context switching degrades output quality. Teams learn to manage perceptions rather than solve problems.",
+    system: "Replace meeting-based status updates with async dashboards updated by the team in real time. Reserve sync time for decisions, not information transfer. Gradually rebuild trust through consistent async signal quality.",
+    teamSize: "11–50",
+    createdAt: "Sep 2024",
+  },
 ];
 
 const INSIGHTS = [
-  { label: "Prioritization", count: 31, pct: 78 },
-  { label: "Communication", count: 24, pct: 60 },
-  { label: "Leadership", count: 19, pct: 48 },
-  { label: "Meetings", count: 17, pct: 43 },
-  { label: "Execution", count: 14, pct: 35 },
+  { label: "Prioritization", count: 47, pct: 78 },
+  { label: "Communication", count: 38, pct: 63 },
+  { label: "Execution",     count: 31, pct: 52 },
+  { label: "Leadership",    count: 28, pct: 47 },
+  { label: "Meetings",      count: 22, pct: 37 },
 ];
 
-const TEAM_SIZES = ["1–10", "11–50", "51–200", "200+"];
 const INDUSTRIES = ["Technology", "E-commerce", "Healthcare", "Finance", "Agency", "Education", "Retail", "Other"];
 
 export default function SignalsPage() {
@@ -100,7 +159,6 @@ export default function SignalsPage() {
     category: "PM",
     impact: "",
     cause: "",
-    teamSize: "11–50",
     industry: "",
     anonymous: true,
   });
@@ -116,7 +174,7 @@ export default function SignalsPage() {
     setTimeout(() => {
       setShowModal(false);
       setSubmitted(false);
-      setForm({ problem: "", category: "PM", impact: "", cause: "", teamSize: "11–50", industry: "", anonymous: true });
+      setForm({ problem: "", category: "PM", impact: "", cause: "", industry: "", anonymous: true });
     }, 2000);
   };
 
@@ -279,149 +337,118 @@ export default function SignalsPage() {
         {showModal && (
           <>
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               onClick={() => setShowModal(false)}
-              className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50"
+              className="fixed inset-0 bg-foreground/20 backdrop-blur-md z-50"
             />
             <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.98 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-x-4 top-[5%] bottom-[5%] md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-2xl z-50 bg-card border border-border rounded-xl overflow-hidden flex flex-col"
+              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 16 }} transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed inset-x-4 top-[8%] md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-full md:max-w-lg z-[51] bg-white dark:bg-zinc-950 border border-border rounded-xl overflow-hidden flex flex-col shadow-2xl"
             >
-              {/* Modal header */}
-              <div className="px-6 py-4 border-b border-border flex items-center justify-between flex-shrink-0">
-                <div>
-                  <div className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.15em] uppercase mb-0.5">Submit</div>
-                  <h2 className="text-base font-semibold text-foreground tracking-tight">Share a Workplace Signal</h2>
+              {/* Header */}
+              <div className="px-6 py-5 border-b border-border flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-5 h-px bg-foreground/20" />
+                  <span className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.2em] uppercase">Workplace Signal</span>
                 </div>
-                <button onClick={() => setShowModal(false)} className="p-2 rounded-lg border border-border hover:bg-secondary transition-colors">
-                  <X className="h-4 w-4" />
+                <button onClick={() => setShowModal(false)}
+                  className="h-7 w-7 flex items-center justify-center rounded-md hover:bg-secondary transition-colors text-muted-foreground/50 hover:text-foreground">
+                  <X className="h-3.5 w-3.5" />
                 </button>
               </div>
 
-              {/* Modal body */}
-              <div className="flex-1 overflow-y-auto px-6 py-6">
+              {/* Body */}
+              <div className="overflow-y-auto px-6 py-6 max-h-[75vh]">
                 {submitted ? (
-                  <div className="flex flex-col items-center justify-center h-full py-16 text-center">
-                    <div className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center mb-4">
-                      <Radio className="h-5 w-5 text-foreground" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">Signal received.</h3>
-                    <p className="text-sm text-muted-foreground max-w-xs">Your signal will be analyzed and published anonymously. Thank you for contributing.</p>
+                  <div className="flex flex-col items-center justify-center py-14 text-center">
+                    <Radio className="h-6 w-6 text-muted-foreground/40 mb-5" />
+                    <p className="text-base font-semibold text-foreground mb-2 tracking-tight">Signal received.</p>
+                    <p className="text-sm text-muted-foreground/60 max-w-xs leading-relaxed">
+                      Your signal will be analyzed and published anonymously.
+                    </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
+                  <form onSubmit={handleSubmit} className="space-y-4">
 
-                    <div>
-                      <label className="block text-xs font-mono text-muted-foreground/60 tracking-[0.12em] uppercase mb-2">
-                        What operational problem are you experiencing? *
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] font-mono text-muted-foreground/35 tracking-[0.15em] uppercase">
+                        What problem are you observing? <span className="text-foreground/30">*</span>
                       </label>
-                      <textarea
-                        required
-                        rows={3}
-                        value={form.problem}
+                      <textarea required rows={3} value={form.problem}
                         onChange={(e) => setForm({ ...form, problem: e.target.value })}
-                        placeholder="Describe the friction, pattern, or breakdown you're observing..."
-                        className="w-full px-4 py-3 rounded-lg border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground/30 transition-colors resize-none leading-relaxed"
+                        placeholder="Describe the friction, pattern, or breakdown…"
+                        className="w-full px-4 py-3 bg-zinc-100 dark:bg-zinc-900 border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground/35 focus:outline-none focus:border-foreground/30 transition-colors resize-none leading-relaxed"
                       />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-mono text-muted-foreground/60 tracking-[0.12em] uppercase mb-2">Category *</label>
-                        <select
-                          value={form.category}
-                          onChange={(e) => setForm({ ...form, category: e.target.value })}
-                          className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-sm text-foreground focus:outline-none focus:border-foreground/30 transition-colors"
-                        >
-                          {["PM", "Engineering", "Leadership", "Meetings", "Communication", "Prioritization", "Hiring", "Execution"].map((c) => (
-                            <option key={c}>{c}</option>
-                          ))}
-                        </select>
-                      </div>
-                      <div>
-                        <label className="block text-xs font-mono text-muted-foreground/60 tracking-[0.12em] uppercase mb-2">Team Size</label>
-                        <select
-                          value={form.teamSize}
-                          onChange={(e) => setForm({ ...form, teamSize: e.target.value })}
-                          className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-sm text-foreground focus:outline-none focus:border-foreground/30 transition-colors"
-                        >
-                          {TEAM_SIZES.map((s) => <option key={s}>{s}</option>)}
-                        </select>
-                      </div>
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] font-mono text-muted-foreground/35 tracking-[0.15em] uppercase">
+                        Category <span className="text-foreground/30">*</span>
+                      </label>
+                      <select value={form.category}
+                        onChange={(e) => setForm({ ...form, category: e.target.value })}
+                        className="w-full px-3 py-3 bg-zinc-100 dark:bg-zinc-900 border border-border rounded-lg text-sm text-foreground focus:outline-none focus:border-foreground/30 transition-colors">
+                        {["PM", "Engineering", "Leadership", "Meetings", "Communication", "Prioritization", "Hiring", "Execution"].map((c) => (
+                          <option key={c}>{c}</option>
+                        ))}
+                      </select>
                     </div>
 
-                    <div>
-                      <label className="block text-xs font-mono text-muted-foreground/60 tracking-[0.12em] uppercase mb-2">
-                        What impact does this create? *
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] font-mono text-muted-foreground/35 tracking-[0.15em] uppercase">
+                        What impact does this create? <span className="text-foreground/30">*</span>
                       </label>
-                      <textarea
-                        required
-                        rows={2}
-                        value={form.impact}
+                      <textarea required rows={2} value={form.impact}
                         onChange={(e) => setForm({ ...form, impact: e.target.value })}
                         placeholder="How does this affect the team, output, or culture?"
-                        className="w-full px-4 py-3 rounded-lg border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground/30 transition-colors resize-none leading-relaxed"
+                        className="w-full px-4 py-3 bg-zinc-100 dark:bg-zinc-900 border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground/35 focus:outline-none focus:border-foreground/30 transition-colors resize-none leading-relaxed"
                       />
                     </div>
 
-                    <div>
-                      <label className="block text-xs font-mono text-muted-foreground/60 tracking-[0.12em] uppercase mb-2">
-                        What do you think is causing this? <span className="normal-case text-muted-foreground/30">(optional)</span>
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] font-mono text-muted-foreground/35 tracking-[0.15em] uppercase">
+                        Root cause hypothesis <span className="text-muted-foreground/25 normal-case tracking-normal">(optional)</span>
                       </label>
-                      <textarea
-                        rows={2}
-                        value={form.cause}
+                      <textarea rows={2} value={form.cause}
                         onChange={(e) => setForm({ ...form, cause: e.target.value })}
-                        placeholder="Your hypothesis on the root cause..."
-                        className="w-full px-4 py-3 rounded-lg border border-border bg-background text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground/30 transition-colors resize-none leading-relaxed"
+                        placeholder="Your hypothesis on what's driving this…"
+                        className="w-full px-4 py-3 bg-zinc-100 dark:bg-zinc-900 border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground/35 focus:outline-none focus:border-foreground/30 transition-colors resize-none leading-relaxed"
                       />
                     </div>
 
-                    <div>
-                      <label className="block text-xs font-mono text-muted-foreground/60 tracking-[0.12em] uppercase mb-2">
-                        Industry <span className="normal-case text-muted-foreground/30">(optional)</span>
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] font-mono text-muted-foreground/35 tracking-[0.15em] uppercase">
+                        Industry <span className="text-muted-foreground/25 normal-case tracking-normal">(optional)</span>
                       </label>
-                      <select
-                        value={form.industry}
+                      <select value={form.industry}
                         onChange={(e) => setForm({ ...form, industry: e.target.value })}
-                        className="w-full px-4 py-2.5 rounded-lg border border-border bg-background text-sm text-foreground focus:outline-none focus:border-foreground/30 transition-colors"
-                      >
+                        className="w-full px-3 py-3 bg-zinc-100 dark:bg-zinc-900 border border-border rounded-lg text-sm text-foreground focus:outline-none focus:border-foreground/30 transition-colors">
                         <option value="">Select industry</option>
                         {INDUSTRIES.map((i) => <option key={i}>{i}</option>)}
                       </select>
                     </div>
 
-                    {/* Anonymous toggle */}
-                    <div className="flex items-center justify-between p-4 rounded-lg border border-border bg-secondary/50">
+                    {/* Anonymous toggle — inline row */}
+                    <div className="flex items-center justify-between py-4 border-t border-border">
                       <div>
-                        <p className="text-sm font-medium text-foreground">Submit anonymously</p>
-                        <p className="text-xs text-muted-foreground/60 mt-0.5">No names, no company, no trace. Always.</p>
+                        <p className="text-sm font-medium text-foreground tracking-tight">Anonymous submission</p>
+                        <p className="text-xs text-muted-foreground/40 font-mono mt-0.5">No names · No company · No trace</p>
                       </div>
-                      <button
-                        type="button"
-                        onClick={() => setForm({ ...form, anonymous: !form.anonymous })}
-                        className={`w-10 h-5 rounded-full transition-colors relative ${form.anonymous ? "bg-foreground" : "bg-border"}`}
-                      >
-                        <div className={`absolute top-0.5 w-4 h-4 rounded-full bg-background transition-all ${form.anonymous ? "left-5" : "left-0.5"}`} />
+                      <button type="button" onClick={() => setForm({ ...form, anonymous: !form.anonymous })}
+                        className={`relative w-9 h-[18px] rounded-full transition-colors flex-shrink-0 ${form.anonymous ? "bg-foreground" : "bg-border"}`}>
+                        <div className={`absolute top-[1px] w-4 h-4 rounded-full bg-background transition-all ${form.anonymous ? "left-[18px]" : "left-[1px]"}`} />
                       </button>
                     </div>
 
-                    {/* Rules reminder */}
-                    <p className="text-[10px] text-muted-foreground/40 leading-relaxed font-mono">
-                      No company names · No personal identification · No harassment · No legal accusations. Signals that violate these rules will not be published.
-                    </p>
-
-                    <button
-                      type="submit"
-                      className="w-full py-3 bg-foreground text-background rounded-lg text-sm font-medium hover:bg-foreground/90 transition-colors"
-                    >
+                    <button type="submit"
+                      className="w-full py-3 bg-foreground text-background rounded-lg text-sm font-medium hover:bg-foreground/85 transition-colors">
                       Submit Signal
                     </button>
+
+                    <p className="text-[10px] text-muted-foreground/30 font-mono leading-relaxed text-center">
+                      No company names · No personal info · No harassment
+                    </p>
                   </form>
                 )}
               </div>
