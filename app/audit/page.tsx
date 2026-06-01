@@ -192,13 +192,13 @@ export default function AuditPage() {
         <div className="mx-auto max-w-3xl px-6 py-12">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-6 h-px bg-foreground/15" />
-            <span className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.25em] uppercase">Free Tool</span>
+            <span className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.25em] uppercase">Free Revenue Tool</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold tracking-[-0.04em] text-foreground leading-tight mb-3">
-            Automation Audit
+            Free Revenue Leak Audit
           </h1>
           <p className="text-muted-foreground/60 text-sm leading-relaxed max-w-md">
-            8 questions. 3 minutes. Find out exactly which parts of your business can run on autopilot — and how many hours per week you could get back.
+            8 questions. 3 minutes. Find out exactly how many customers you&apos;re losing — and where your revenue is leaking right now.
           </p>
         </div>
       </section>
@@ -218,10 +218,10 @@ export default function AuditPage() {
                   <Zap className="h-8 w-8 text-foreground/70" />
                 </div>
                 <h2 className="text-2xl font-bold tracking-tight text-foreground mb-3">
-                  Is your business ready to automate?
+                  How much revenue are you losing right now?
                 </h2>
                 <p className="text-sm text-muted-foreground/60 leading-relaxed max-w-sm mx-auto mb-10">
-                  Most Indonesian SME owners spend 8–20 hours a week on tasks that can be automated. This audit tells you exactly which ones, and what to do first.
+                  Most businesses lose 30–60% of potential customers due to slow replies and zero follow-up. This audit diagnoses your exact revenue leaks in 3 minutes.
                 </p>
 
                 <div className="grid grid-cols-3 gap-4 mb-10 text-center">
@@ -335,8 +335,8 @@ export default function AuditPage() {
               {/* Workflows */}
               <div className="border border-border rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden mb-4">
                 <div className="px-7 py-6 border-b border-border">
-                  <p className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.15em] uppercase mb-1">Automatable workflows identified</p>
-                  <h3 className="text-lg font-bold text-foreground tracking-tight">{workflows.length} workflows ready to automate</h3>
+                  <p className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.15em] uppercase mb-1">Revenue recovery opportunities</p>
+                  <h3 className="text-lg font-bold text-foreground tracking-tight">{workflows.length} systems identified to recover lost revenue</h3>
                 </div>
                 <div className="divide-y divide-border">
                   {workflows.map((wf) => {
@@ -357,24 +357,37 @@ export default function AuditPage() {
                 </div>
               </div>
 
+              {/* Revenue diagnosis */}
+              <div className="border border-border rounded-2xl bg-white dark:bg-zinc-950 p-8 mb-4">
+                <p className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.15em] uppercase mb-4">Revenue Leak Diagnosis</p>
+                <p className="text-lg font-bold text-foreground tracking-tight mb-2">
+                  You are likely losing 25–45% of potential customers.
+                </p>
+                <p className="text-sm text-muted-foreground/60 leading-relaxed mb-5">
+                  Based on your answers: slow follow-up and no automation are costing you real sales every week.
+                </p>
+                <p className="text-sm font-semibold text-foreground">We can fix this in 2–3 days.</p>
+              </div>
+
               {/* CTA */}
               <div className="border border-border rounded-2xl bg-white dark:bg-zinc-950 p-8 text-center">
                 <h3 className="text-xl font-bold tracking-tight text-foreground mb-2">
-                  Ready to reclaim those {hoursSaved} hours?
+                  Stop losing customers. Start recovering revenue.
                 </h3>
                 <p className="text-sm text-muted-foreground/60 leading-relaxed max-w-sm mx-auto mb-7">
-                  We&apos;ll set up your first automation in one session. Free consultation — no obligation.
+                  We&apos;ll build your AI sales system in one session. Free setup call — no obligation.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Link href="/automation#get-started"
+                  <Link href="/automation#onboarding"
                     className="inline-flex items-center justify-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-7 py-3 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity">
-                    Book a free setup call <ArrowRight className="h-4 w-4" />
+                    Book Setup Call <ArrowRight className="h-4 w-4" />
                   </Link>
                   <button onClick={handleStart}
                     className="inline-flex items-center justify-center gap-2 border border-border text-foreground px-7 py-3 rounded-lg text-sm font-medium hover:bg-secondary transition-colors">
                     Retake the audit
                   </button>
                 </div>
+                <p className="text-[10px] font-mono text-muted-foreground/30 mt-5">Setup in 2–3 days · No commitment</p>
               </div>
 
             </motion.div>
