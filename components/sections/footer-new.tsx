@@ -4,12 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-const FOOTER_LINKS = {
-  Systems:      { name: "Business Automation", href: "/automation" },
-  Knowledge:    { name: "Knowledge",           href: "/learn" },
-  Intelligence: { name: "Workplace Signals",   href: "/signals" },
-};
-
 export default function FooterNew() {
   const rawPathname = usePathname();
   const pathname = rawPathname.replace(/\/$/, "") || "/";
@@ -17,7 +11,7 @@ export default function FooterNew() {
     <footer className="border-t border-border bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-12">
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
 
           {/* Brand */}
           <div>
@@ -26,32 +20,28 @@ export default function FooterNew() {
               <span className="text-sm font-semibold text-foreground">Your Product Guy</span>
             </Link>
             <p className="text-xs text-muted-foreground/60 leading-relaxed">
-              Operational intelligence for modern businesses.
+              AI revenue recovery systems for businesses.
             </p>
           </div>
 
-          {/* Module columns */}
-          {(Object.entries(FOOTER_LINKS) as [string, { name: string; href: string }][]).map(([section, link]) => (
-            <div key={section}>
-              <h3 className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.15em] uppercase mb-3">
-                {section}
-              </h3>
-              <Link
-                href={link.href}
-                className={`text-sm transition-colors ${
-                  pathname === link.href
-                    ? "text-zinc-900 dark:text-white font-semibold underline underline-offset-2"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {link.name}
-              </Link>
-            </div>
-          ))}
+          {/* Service */}
+          <div>
+            <h3 className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.15em] uppercase mb-3">Service</h3>
+            <Link
+              href="/automation"
+              className={`text-sm transition-colors ${
+                pathname === "/automation"
+                  ? "text-zinc-900 dark:text-white font-semibold underline underline-offset-2"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              AI Sales System
+            </Link>
+          </div>
 
           {/* Free Audit */}
           <div>
-            <h3 className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.15em] uppercase mb-3">Tools</h3>
+            <h3 className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.15em] uppercase mb-3">Free Tool</h3>
             <Link
               href="/audit"
               className={`text-sm transition-colors ${
@@ -60,7 +50,7 @@ export default function FooterNew() {
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              Free Audit
+              Free Revenue Leak Audit
             </Link>
           </div>
 

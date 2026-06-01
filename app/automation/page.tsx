@@ -7,9 +7,10 @@ import Link from "next/link";
 import { ArrowRight, Clock, CheckCircle, Zap, Calendar, Bell, MessageSquare, Send } from "lucide-react";
 
 const WHAT_WE_AUTOMATE = [
-  { icon: MessageSquare, label: "Customer replies",     sub: "Every inquiry answered in under 1 second"                  },
-  { icon: Calendar,      label: "Booking confirmation", sub: "Slots reserved without manual coordination"                },
-  { icon: Bell,          label: "Follow-up sequences",  sub: "Post-visit reminders and re-engagement sent automatically" },
+  { icon: MessageSquare, label: "Auto replies (WhatsApp / IG)", sub: "Every inquiry answered in under 1 second — 24/7" },
+  { icon: Send,          label: "Follow-up sequences",          sub: "Automated messages that re-engage leads and past customers" },
+  { icon: Calendar,      label: "Booking system",               sub: "Customers book and confirm slots without manual coordination" },
+  { icon: Bell,          label: "Lead tracking",                sub: "Every inquiry logged and organized automatically" },
 ];
 
 const CALL_STEPS = [
@@ -28,16 +29,23 @@ function PageHero() {
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
           className="flex items-center gap-3 mb-14">
           <div className="w-6 h-px bg-foreground/15" />
-          <span className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.25em] uppercase">Business Automation</span>
+          <span className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.25em] uppercase">Done-for-You Service</span>
         </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[clamp(3rem,6.5vw,6rem)] font-bold tracking-[-0.05em] leading-[0.93] text-foreground mb-16 max-w-3xl">
-          Your operations.<br />
-          <span className="text-muted-foreground/25">Running without you.</span>
+          className="text-[clamp(2.5rem,5.5vw,5rem)] font-bold tracking-[-0.05em] leading-[1.0] text-foreground mb-8 max-w-3xl">
+          Done-for-You<br />
+          <span className="text-muted-foreground/25">AI Sales System.</span>
         </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-base text-muted-foreground leading-relaxed max-w-md mb-14">
+          We install an AI system that converts your inquiries into bookings and sales automatically — so you stop losing customers to slow replies and no follow-up.
+        </motion.p>
 
         <div className="border-t border-border max-w-lg">
           {WHAT_WE_AUTOMATE.map((item, i) => {
@@ -57,17 +65,48 @@ function PageHero() {
           })}
         </div>
 
-        {/* Audit nudge */}
+        {/* CTAs */}
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.55 }}
-          className="mt-10">
+          className="mt-10 flex flex-col sm:flex-row gap-3">
+          <Link href="#onboarding"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-foreground text-background rounded-lg text-sm font-semibold hover:bg-foreground/85 transition-all">
+            Book Setup Call
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
           <Link href="/audit"
-            className="inline-flex items-center gap-2.5 border border-border rounded-lg px-5 py-3 text-sm text-foreground hover:bg-secondary transition-colors group">
+            className="inline-flex items-center justify-center gap-2.5 border border-border rounded-lg px-5 py-3 text-sm text-foreground hover:bg-secondary transition-colors group">
             <Zap className="h-3.5 w-3.5 text-muted-foreground/50" />
-            <span>Not sure where to start? Take the free 3-minute audit</span>
+            <span>Free Revenue Audit first</span>
             <ArrowRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:translate-x-0.5 transition-transform" />
           </Link>
         </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function Pricing() {
+  return (
+    <section className="py-20 md:py-24 border-b border-border bg-foreground">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="flex items-center gap-3 mb-10">
+          <div className="w-6 h-px bg-background/20" />
+          <span className="text-[10px] font-mono text-background/40 tracking-[0.2em] uppercase">Pricing</span>
+        </div>
+        <div className="max-w-2xl">
+          <p className="text-[clamp(1.8rem,4vw,3rem)] font-bold tracking-[-0.04em] leading-[1.1] text-background/90 mb-4">
+            Starting from $497 setup fee.
+          </p>
+          <p className="text-background/45 text-sm leading-relaxed mb-8 max-w-md">
+            One-time setup. Your AI sales system is live in 2–3 days. No monthly fees to start — just a working system that pays for itself.
+          </p>
+          <Link href="#onboarding"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-background text-foreground rounded-lg text-sm font-semibold hover:bg-background/90 transition-all">
+            Book Setup Call
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
       </div>
     </section>
   );
@@ -100,14 +139,14 @@ function GetStarted() {
           <div>
             <div className="flex items-center gap-3 mb-12">
               <div className="w-6 h-px bg-foreground/15" />
-              <span className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.25em] uppercase">Get Started</span>
+              <span className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.25em] uppercase">Book Setup Call</span>
             </div>
             <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-[-0.04em] leading-[1.0] text-foreground mb-6">
-              Book a free<br />
-              <span className="text-muted-foreground/25">30-minute setup call.</span>
+              Get your AI system<br />
+              <span className="text-muted-foreground/25">live in 2–3 days.</span>
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed mb-10 max-w-sm">
-              Leave your details and we&apos;ll reach out to schedule.
+              Leave your details and we&apos;ll reach out to schedule your free 30-minute setup call.
             </p>
 
             {status === "sent" ? (
@@ -141,7 +180,7 @@ function GetStarted() {
                 {status === "error" && (
                   <p className="text-xs text-muted-foreground/50 font-mono">Something went wrong — please try again.</p>
                 )}
-                <p className="text-xs text-muted-foreground/35 font-mono pt-1">Free · No commitment · Setup in 2–3 days</p>
+                <p className="text-xs text-muted-foreground/35 font-mono pt-1">Free call · No commitment · Setup in 2–3 days</p>
               </form>
             )}
           </div>
@@ -179,6 +218,7 @@ export default function AutomationPage() {
   return (
     <main className="flex flex-col">
       <PageHero />
+      <Pricing />
       <GetStarted />
       <FooterNew />
     </main>

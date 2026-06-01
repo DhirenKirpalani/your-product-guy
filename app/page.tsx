@@ -1,24 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Zap, BookOpen, Radio, ArrowRight, MessageSquare, CheckCircle, Send } from "lucide-react";
+import { motion } from "framer-motion";
+import { Zap, ArrowRight, MessageSquare, Clock, RefreshCw, BarChart2, Calendar, CheckCircle } from "lucide-react";
 import Link from "next/link";
 import FooterNew from "@/components/sections/footer-new";
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
-const FLOW_STEPS = [
-  { label: "Customer inquiry",   sub: "WhatsApp message received",  ts: "0ms"  },
-  { label: "System responds",    sub: "Reply sent automatically",   ts: "< 1s" },
-  { label: "Booking confirmed",  sub: "Slot reserved",              ts: "1.2s" },
-  { label: "Reminder scheduled", sub: "24h before appointment",     ts: "auto" },
-  { label: "Follow-up queued",   sub: "Post-visit sequence active", ts: "D+1"  },
-];
-const AUTOMATION_REVEALS = ["Customer replies", "Appointment bookings", "Follow-up sequences", "Lead organization"];
-const LEARN_REVEALS      = ["Product roadmapping", "Prioritization systems", "Stakeholder clarity"];
-const SIGNAL_PREVIEW     = "\"Roadmaps change every week after leadership meetings.\"";
-
 // ─── Operational Flow (animated, cycling) ────────────────────────────────────
+const FLOW_STEPS = [
+  { label: "Customer inquiry",    sub: "WhatsApp message received",   ts: "0ms"  },
+  { label: "System responds",     sub: "Reply sent automatically",    ts: "< 1s" },
+  { label: "Booking confirmed",   sub: "Slot reserved",               ts: "1.2s" },
+  { label: "Reminder scheduled",  sub: "24h before appointment",      ts: "auto" },
+  { label: "Follow-up queued",    sub: "Post-visit sequence active",  ts: "D+1"  },
+];
+
 function OperationalFlow() {
   const [active, setActive] = useState(0);
   useEffect(() => {
@@ -34,14 +30,14 @@ function OperationalFlow() {
       style={{ boxShadow: "0 1px 2px rgba(0,0,0,0.04), 0 8px 28px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.05)" }}
     >
       <div className="px-5 py-3 border-b border-border bg-secondary/30 flex items-center justify-between">
-        <span className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.15em] uppercase">Operational System</span>
+        <span className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.15em] uppercase">AI Sales System</span>
         <div className="flex items-center gap-1.5">
           <motion.div
             animate={{ opacity: [1, 0.25, 1] }}
             transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
             className="w-1.5 h-1.5 rounded-full bg-green-500/60"
           />
-          <span className="text-[10px] font-mono text-muted-foreground/35">systems active · 24/7</span>
+          <span className="text-[10px] font-mono text-muted-foreground/35">running · 24/7</span>
         </div>
       </div>
 
@@ -86,13 +82,7 @@ function OperationalFlow() {
   );
 }
 
-// ─── Hero ────────────────────────────────────────────────────────────────────
-const SERVICES_QUICK = [
-  { icon: Zap,      label: "Business Automation", sub: "WhatsApp systems that run your customer operations", href: "/automation" },
-  { icon: BookOpen, label: "PM Knowledge",         sub: "Product management education that's actually useful", href: "/learn"       },
-  { icon: Radio,    label: "Workplace Signals",    sub: "Anonymous intelligence from real operational teams",  href: "/signals"    },
-];
-
+// ─── Hero ─────────────────────────────────────────────────────────────────────
 function Hero() {
   return (
     <section className="relative bg-background overflow-hidden border-b border-border">
@@ -105,47 +95,39 @@ function Hero() {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}
               className="flex items-center gap-3 mb-8">
               <div className="w-6 h-px bg-foreground/20" />
-              <span className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.2em] uppercase">Your Product Guy</span>
+              <span className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.2em] uppercase">AI Revenue Recovery</span>
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="text-[clamp(2rem,4.5vw,4rem)] font-bold tracking-[-0.04em] leading-[1.05] text-foreground mb-10"
+              className="text-[clamp(2rem,4.5vw,4rem)] font-bold tracking-[-0.04em] leading-[1.05] text-foreground mb-6"
             >
-              Three services.<br />
-              <span className="text-muted-foreground/35">One operational platform.</span>
+              Turn customer inquiries into paying customers automatically.
             </motion.h1>
 
-            {/* Services list — direct, scannable */}
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+            <motion.p
+              initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.18 }}
-              className="space-y-4 mb-10">
-              {SERVICES_QUICK.map((s, i) => {
-                const Icon = s.icon;
-                return (
-                  <motion.a key={s.label} href={s.href}
-                    initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.22 + i * 0.07 }}
-                    className="group flex items-start gap-3 p-3 -mx-3 rounded-lg hover:bg-secondary/50 transition-colors">
-                    <Icon className="h-4 w-4 text-muted-foreground/50 mt-0.5 flex-shrink-0" />
-                    <div>
-                      <div className="text-sm font-semibold text-foreground group-hover:text-foreground transition-colors">{s.label}</div>
-                      <div className="text-xs text-muted-foreground/60">{s.sub}</div>
-                    </div>
-                    <ArrowRight className="h-3.5 w-3.5 text-muted-foreground/30 mt-0.5 ml-auto flex-shrink-0 group-hover:text-foreground group-hover:translate-x-0.5 transition-all" />
-                  </motion.a>
-                );
-              })}
-            </motion.div>
+              className="text-base text-muted-foreground leading-relaxed mb-10 max-w-md"
+            >
+              We build AI systems that respond, follow up, and convert your leads — so you stop losing sales to slow replies and missed follow-ups.
+            </motion.p>
 
-            <motion.a href="/automation"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45 }}
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-foreground text-background rounded-lg text-sm font-medium hover:bg-foreground/85 transition-all">
-              <Zap className="h-4 w-4" />
-              Book Free Automation Call
-              <ArrowRight className="h-3.5 w-3.5" />
-            </motion.a>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}
+              className="flex flex-col sm:flex-row gap-3">
+              <Link href="/audit"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-foreground text-background rounded-lg text-sm font-semibold hover:bg-foreground/85 transition-all">
+                <Zap className="h-4 w-4" />
+                Get Free Revenue Audit
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+              <Link href="/automation"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border text-foreground rounded-lg text-sm font-medium hover:bg-secondary transition-colors">
+                See How It Works
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </motion.div>
           </div>
 
           <div className="hidden lg:block">
@@ -157,291 +139,178 @@ function Hero() {
   );
 }
 
-// ─── Services (asymmetric) ────────────────────────────────────────────────────
-function Services() {
-  const [hovA, setHovA] = useState(false);
-  const [hovL, setHovL] = useState(false);
-  const [hovS, setHovS] = useState(false);
+// ─── Problem ──────────────────────────────────────────────────────────────────
+const PAIN_POINTS = [
+  { icon: Clock,       label: "Slow replies",          body: "Customers message on WhatsApp or Instagram. No one replies for hours. They go to your competitor instead." },
+  { icon: RefreshCw,   label: "No follow-up",          body: "A customer shows interest then goes quiet. Without a follow-up system, that sale is gone forever." },
+  { icon: MessageSquare, label: "Lost leads",          body: "DMs, WhatsApp chats, Instagram comments — leads slip through every day because there's no system to catch them." },
+];
 
+function Problem() {
   return (
-    <section className="border-b border-border bg-background">
+    <section className="py-20 md:py-28 border-b border-border bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-5">
-
-          {/* Automation — featured 3/5 */}
-          <div className="lg:col-span-3 lg:border-r border-b lg:border-b-0 border-border px-8 py-12 transition-colors duration-200 hover:bg-secondary/30"
-            onMouseEnter={() => setHovA(true)} onMouseLeave={() => setHovA(false)}>
-            <div className="flex items-center gap-2 mb-6">
-              <Zap className="h-4 w-4 text-muted-foreground/50" />
-              <span className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.15em] uppercase">Systems</span>
-            </div>
-            <h3 className="text-xl font-semibold text-foreground tracking-tight mb-3">Business Automation</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed mb-6 max-w-sm">
-              Automated WhatsApp systems that handle replies, bookings, and follow-ups — so your team never drops a lead.
-            </p>
-            <AnimatePresence>
-              {hovA && (
-                <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 4 }}
-                  transition={{ duration: 0.16 }} className="flex flex-wrap gap-2 mb-6">
-                  {AUTOMATION_REVEALS.map((item, i) => (
-                    <motion.span key={item} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.05 }}
-                      className="text-[11px] font-mono text-muted-foreground/60 px-2 py-1 rounded border border-border bg-secondary">
-                      → {item}
-                    </motion.span>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-            <Link href="/automation" className="group inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:gap-3 transition-all">
-              Audit your operational friction <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.8 }}
+          className="max-w-2xl mb-16"
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-6 h-px bg-foreground/20" />
+            <span className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.2em] uppercase">The Problem</span>
           </div>
+          <h2 className="text-[clamp(1.8rem,4vw,3.2rem)] font-bold tracking-[-0.04em] leading-[1.1] text-foreground mb-4">
+            Most businesses lose 30–60% of potential customers.
+          </h2>
+          <p className="text-muted-foreground/60 text-muted-foreground leading-relaxed">
+            Not because of bad products. Because of slow replies, no follow-up, and leads that fall through the cracks.
+          </p>
+        </motion.div>
 
-          {/* Right column: Learn + Signals stacked */}
-          <div className="lg:col-span-2 flex flex-col divide-y divide-border">
-
-            <div className="px-8 py-10 transition-colors duration-200 hover:bg-secondary/30"
-              onMouseEnter={() => setHovL(true)} onMouseLeave={() => setHovL(false)}>
-              <div className="flex items-center gap-2 mb-4">
-                <BookOpen className="h-4 w-4 text-muted-foreground/50" />
-                <span className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.15em] uppercase">Knowledge</span>
-              </div>
-              <h3 className="text-base font-semibold text-foreground tracking-tight mb-2">PM Skills</h3>
-              <AnimatePresence mode="wait">
-                {hovL ? (
-                  <motion.div key="r" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                    transition={{ duration: 0.15 }} className="flex flex-col gap-1 mb-5">
-                    {LEARN_REVEALS.map((item, i) => (
-                      <motion.span key={item} initial={{ opacity: 0, x: -4 }} animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: i * 0.05 }} className="text-xs font-mono text-muted-foreground/50">
-                        → {item}
-                      </motion.span>
-                    ))}
-                  </motion.div>
-                ) : (
-                  <motion.p key="d" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                    className="text-sm text-muted-foreground leading-relaxed mb-5">
-                    Clarity-first product management. No jargon.
-                  </motion.p>
-                )}
-              </AnimatePresence>
-              <Link href="/learn" className="group inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:gap-3 transition-all">
-                Start learning <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-            </div>
-
-            <div className="px-8 py-10 transition-colors duration-200 hover:bg-secondary/30"
-              onMouseEnter={() => setHovS(true)} onMouseLeave={() => setHovS(false)}>
-              <div className="flex items-center gap-2 mb-4">
-                <Radio className="h-4 w-4 text-muted-foreground/50" />
-                <span className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.15em] uppercase">Intelligence</span>
-              </div>
-              <h3 className="text-base font-semibold text-foreground tracking-tight mb-2">Workplace Signals</h3>
-              <AnimatePresence mode="wait">
-                {hovS ? (
-                  <motion.div key="p" initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-                    transition={{ duration: 0.16 }} className="mb-5 p-3 rounded-lg border border-border bg-secondary/50">
-                    <div className="text-[10px] font-mono text-muted-foreground/40 mb-1.5">Signal #024 · Prioritization</div>
-                    <p className="text-xs text-muted-foreground/60 italic leading-relaxed">{SIGNAL_PREVIEW}</p>
-                  </motion.div>
-                ) : (
-                  <motion.p key="d" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                    className="text-sm text-muted-foreground leading-relaxed mb-5">
-                    Anonymous operational insights analyzed through systems thinking.
-                  </motion.p>
-                )}
-              </AnimatePresence>
-              <Link href="/signals" className="group inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:gap-3 transition-all">
-                Explore signals <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-            </div>
-
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border">
+          {PAIN_POINTS.map((p, i) => {
+            const Icon = p.icon;
+            return (
+              <motion.div key={p.label}
+                initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.5 }}
+                className="bg-background p-8">
+                <Icon className="h-5 w-5 text-muted-foreground/40 mb-5" />
+                <h3 className="text-base font-semibold text-foreground tracking-tight mb-3">{p.label}</h3>
+                <p className="text-sm text-muted-foreground/60 leading-relaxed">{p.body}</p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
 
-// ─── Signature Moment ────────────────────────────────────────────────────────
-function SignatureMoment() {
+// ─── Solution ─────────────────────────────────────────────────────────────────
+function Solution() {
   return (
-    <section className="py-36 md:py-52 border-b border-border bg-background">
-      <div className="mx-auto max-w-4xl px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.9 }}
-          className="text-center"
+    <section className="py-20 md:py-28 bg-foreground border-b border-border">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="flex items-center gap-3 mb-10">
+          <div className="w-6 h-px bg-background/20" />
+          <span className="text-[10px] font-mono text-background/40 tracking-[0.2em] uppercase">The Fix</span>
+        </div>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.7 }}
+          className="text-[clamp(1.8rem,4vw,3.2rem)] font-bold tracking-[-0.04em] leading-[1.1] text-background/90 max-w-3xl mb-6"
         >
-          <p className="text-[clamp(1.8rem,4.5vw,3.8rem)] font-bold tracking-[-0.04em] leading-[1.1] text-foreground mb-3">
-            Most businesses don&apos;t fail loudly.
-          </p>
-          <p className="text-[clamp(1.8rem,4.5vw,3.8rem)] font-bold tracking-[-0.04em] leading-[1.1] text-muted-foreground/20">
-            They fail through accumulated<br />operational friction.
-          </p>
-          <p className="text-[10px] font-mono text-muted-foreground/25 tracking-[0.2em] uppercase mt-16">
-            The systems problem no one talks about
-          </p>
+          We install AI systems that handle replies, follow-ups, and booking automatically.
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
+          viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-background/45 text-base leading-relaxed max-w-xl mb-12"
+        >
+          Your business keeps converting leads even when you&apos;re asleep. No manual work. No dropped inquiries. No lost sales.
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <Link href="/audit"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-background text-foreground rounded-lg text-sm font-semibold hover:bg-background/90 transition-all">
+            Find out what you&apos;re losing
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
         </motion.div>
       </div>
     </section>
   );
 }
 
-// ─── Philosophy ───────────────────────────────────────────────────────────────
-const PRINCIPLES = [
-  { n: "01", title: "Systems over effort",                      body: "Most operational problems aren't caused by lazy teams — they're caused by unclear systems. The fix isn't working harder. It's building better structure." },
-  { n: "02", title: "Clarity is a competitive advantage",       body: "The clearest business in any market wins. Clear communication. Clear processes. Clear decisions. Clarity compounds — and so does obscurity." },
-  { n: "03", title: "Good products start with honest problems",  body: "Before roadmaps and sprints, someone has to clearly define the problem worth solving. Most teams skip this. That's why most products disappoint." },
+// ─── What You Get ─────────────────────────────────────────────────────────────
+const DELIVERABLES = [
+  { icon: MessageSquare, label: "Instant reply system",   body: "Auto-responds to every WhatsApp and Instagram inquiry in under 1 second — 24/7, no exceptions." },
+  { icon: RefreshCw,     label: "Follow-up automation",   body: "Sequences that re-engage cold leads and past customers so no sale is left on the table." },
+  { icon: Calendar,      label: "Booking flow",           body: "Customers confirm bookings and appointments automatically. No back-and-forth needed." },
+  { icon: BarChart2,     label: "Lead tracking",          body: "Every inquiry logged and organized so you always know where each customer is in the process." },
 ];
 
-function Philosophy() {
+function WhatYouGet() {
   return (
-    <section className="py-20 md:py-28 bg-foreground">
+    <section className="py-20 md:py-28 border-b border-border bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="flex items-center gap-3 mb-10">
-          <div className="w-6 h-px bg-background/20" />
-          <span className="text-[10px] font-mono text-background/40 tracking-[0.2em] uppercase">Philosophy</span>
-        </div>
-        <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="text-2xl md:text-3xl lg:text-4xl font-semibold text-background/90 leading-[1.15] tracking-tight max-w-3xl mb-14">
-          Modern work becomes chaotic when systems are unclear.
-          <span className="text-background/28"> We build the operational infrastructure that makes businesses function with less friction and more intent.</span>
-        </motion.p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-background/10">
-          {PRINCIPLES.map((p, i) => (
-            <motion.div key={p.n} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.4 }}
-              className="bg-foreground p-6 md:p-8">
-              <div className="text-[10px] font-mono text-background/25 tracking-[0.2em] mb-4">{p.n}</div>
-              <h3 className="text-base font-semibold text-background/80 mb-3 tracking-tight">{p.title}</h3>
-              <p className="text-sm text-background/40 leading-relaxed">{p.body}</p>
-            </motion.div>
-          ))}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.7 }}
+          className="mb-14"
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-6 h-px bg-foreground/20" />
+            <span className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.2em] uppercase">What You Get</span>
+          </div>
+          <h2 className="text-[clamp(1.8rem,4vw,3.2rem)] font-bold tracking-[-0.04em] leading-[1.1] text-foreground">
+            Four systems. One outcome:<br />
+            <span className="text-muted-foreground/30">more paying customers.</span>
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
+          {DELIVERABLES.map((d, i) => {
+            const Icon = d.icon;
+            return (
+              <motion.div key={d.label}
+                initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ delay: i * 0.08, duration: 0.5 }}
+                className="bg-background p-8 md:p-10">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-9 h-9 rounded-lg border border-border bg-secondary/50 flex items-center justify-center flex-shrink-0">
+                    <Icon className="h-4 w-4 text-foreground/60" />
+                  </div>
+                  <h3 className="text-base font-semibold text-foreground tracking-tight">{d.label}</h3>
+                </div>
+                <p className="text-sm text-muted-foreground/60 leading-relaxed">{d.body}</p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
 
-// ─── Contribute ──────────────────────────────────────────────────────────────
-const ROLES = [
-  { label: "Content writer",   sub: "PM articles, guides, operational frameworks"      },
-  { label: "Signal contributor", sub: "Share anonymous workplace patterns and insights"  },
-  { label: "Developer",        sub: "Help build and improve this platform"              },
-  { label: "Designer",         sub: "UI, visual systems, editorial design"              },
-];
-
-function Contribute() {
-  const [form, setForm] = useState({ name: "", email: "", role: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "loading" | "sent" | "error">("idle");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("loading");
-    try {
-      const res = await fetch("/api/send", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "contribute", ...form }),
-      });
-      setStatus(res.ok ? "sent" : "error");
-    } catch {
-      setStatus("error");
-    }
-  };
-
+// ─── Final CTA ────────────────────────────────────────────────────────────────
+function FinalCTA() {
   return (
-    <section id="contribute" className="border-b border-border bg-background">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20 md:py-28">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-
-          <div>
-            <motion.div initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ duration: 0.7 }}
-              className="flex items-center gap-3 mb-10">
-              <div className="w-6 h-px bg-foreground/15" />
-              <span className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.25em] uppercase">Open Contribution</span>
-            </motion.div>
-
-            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(2rem,4.5vw,3.8rem)] font-bold tracking-[-0.04em] leading-[1.0] text-foreground mb-12">
-              Help build this.<br />
-              <span className="text-muted-foreground/25">We&apos;re open to contributors.</span>
-            </motion.h2>
-
-            <div className="border-t border-border">
-              {ROLES.map((role, i) => (
-                <motion.div key={role.label}
-                  initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex items-center justify-between py-5 border-b border-border">
-                  <div>
-                    <div className="text-sm font-semibold text-foreground tracking-tight">{role.label}</div>
-                    <div className="text-xs text-muted-foreground/50 font-mono mt-0.5">{role.sub}</div>
-                  </div>
-                  <span className="text-[10px] font-mono text-muted-foreground/25 tracking-[0.15em] uppercase">Open</span>
-                </motion.div>
-              ))}
-            </div>
+    <section className="py-24 md:py-36 border-b border-border bg-background">
+      <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.8 }}
+        >
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <div className="w-6 h-px bg-foreground/20" />
+            <span className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.2em] uppercase">Free · Takes 3 minutes</span>
+            <div className="w-6 h-px bg-foreground/20" />
           </div>
-
-          <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:pt-20">
-            <p className="text-sm text-muted-foreground/70 leading-relaxed mb-8">
-              This platform is being built in public. Drop your details and we&apos;ll
-              be in touch.
-            </p>
-
-            {status === "sent" ? (
-              <div className="flex items-center gap-3 py-4 border-t border-border">
-                <CheckCircle className="h-4 w-4 text-foreground/60" />
-                <p className="text-sm text-muted-foreground">Thanks — we&apos;ll reach out shortly.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-3">
-                <input
-                  type="text" required placeholder="Your name"
-                  value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                  className="w-full px-4 py-3 bg-secondary/50 border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground/30 transition-colors"
-                />
-                <input
-                  type="email" required placeholder="Your email"
-                  value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                  className="w-full px-4 py-3 bg-secondary/50 border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground/30 transition-colors"
-                />
-                <select
-                  required value={form.role} onChange={e => setForm(f => ({ ...f, role: e.target.value }))}
-                  className="w-full px-4 py-3 bg-secondary/50 border border-border rounded-lg text-sm text-foreground focus:outline-none focus:border-foreground/30 transition-colors">
-                  <option value="" disabled>Role you&apos;re interested in</option>
-                  {ROLES.map(r => <option key={r.label} value={r.label}>{r.label}</option>)}
-                </select>
-                <textarea
-                  placeholder="Briefly describe what you'd like to contribute (optional)"
-                  rows={3} value={form.message}
-                  onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                  className="w-full px-4 py-3 bg-secondary/50 border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground/30 transition-colors resize-none"
-                />
-                <button type="submit" disabled={status === "loading"}
-                  className="group w-full flex items-center justify-center gap-2.5 px-6 py-3 bg-foreground text-background rounded-lg text-sm font-medium hover:bg-foreground/85 disabled:opacity-50 transition-all">
-                  <Send className="h-4 w-4" />
-                  {status === "loading" ? "Sending…" : "Send Application"}
-                  <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-                </button>
-                {status === "error" && (
-                  <p className="text-xs text-muted-foreground/50 font-mono">Something went wrong — please try again.</p>
-                )}
-                <p className="text-[10px] text-muted-foreground/30 font-mono pt-1">Usually replies same day</p>
-              </form>
-            )}
-          </motion.div>
-
-        </div>
+          <h2 className="text-[clamp(2rem,5vw,4rem)] font-bold tracking-[-0.04em] leading-[1.05] text-foreground mb-6">
+            Find out how many customers you&apos;re losing right now.
+          </h2>
+          <p className="text-muted-foreground leading-relaxed max-w-lg mx-auto mb-10">
+            Answer 8 questions about your business. We&apos;ll show you exactly where revenue is leaking — and what to do about it.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link href="/audit"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-foreground text-background rounded-lg text-sm font-semibold hover:bg-foreground/85 transition-all">
+              <Zap className="h-4 w-4" />
+              Get Free Revenue Audit
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+            <Link href="/automation"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-border text-foreground rounded-lg text-sm font-medium hover:bg-secondary transition-colors">
+              <CheckCircle className="h-4 w-4 text-muted-foreground/50" />
+              View AI Sales System
+            </Link>
+          </div>
+          <p className="text-[10px] font-mono text-muted-foreground/30 mt-6 tracking-[0.1em]">Setup in 2–3 days · No commitment</p>
+        </motion.div>
       </div>
     </section>
   );
@@ -452,9 +321,11 @@ export default function Home() {
   return (
     <main className="flex flex-col">
       <Hero />
-      <Contribute />
+      <Problem />
+      <Solution />
+      <WhatYouGet />
+      <FinalCTA />
       <FooterNew />
     </main>
   );
 }
-

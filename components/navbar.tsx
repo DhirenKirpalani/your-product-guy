@@ -9,8 +9,6 @@ import LanguageSelector from "@/components/language-selector";
 
 const NAVIGATION = [
   { name: "Automation", href: "/automation" },
-  { name: "Knowledge",  href: "/learn"      },
-  { name: "Signals",   href: "/signals"    },
 ];
 
 export default function Navbar() {
@@ -62,14 +60,7 @@ export default function Navbar() {
                   : "border-border text-foreground hover:bg-secondary"
               }`}
             >
-              Free Audit
-            </Link>
-            <div className="w-px h-4 bg-border mx-2" />
-            <Link
-              href="/#contribute"
-              className="text-sm font-medium text-muted-foreground/50 hover:text-muted-foreground hover:bg-secondary transition-all px-3 py-1.5 rounded-md"
-            >
-              Contribute
+              Free Revenue Audit
             </Link>
           </div>
 
@@ -114,14 +105,7 @@ export default function Navbar() {
                     : "border-border text-foreground hover:bg-secondary"
                 }`}
               >
-                Free Audit
-              </Link>
-              <Link
-                href="/#contribute"
-                onClick={() => setIsOpen(false)}
-                className="text-sm font-medium text-muted-foreground/50 hover:text-muted-foreground transition-all px-3 py-1.5 rounded-md w-fit"
-              >
-                Contribute
+                Free Revenue Audit
               </Link>
             </div>
           </div>
