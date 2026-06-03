@@ -7,16 +7,16 @@ import Link from "next/link";
 import { ArrowRight, Clock, CheckCircle, Zap, Calendar, Bell, MessageSquare, Send } from "lucide-react";
 
 const WHAT_WE_AUTOMATE = [
-  { icon: MessageSquare, label: "Auto replies (WhatsApp / IG)", sub: "Every inquiry answered in under 1 second — 24/7" },
-  { icon: Send,          label: "Follow-up sequences",          sub: "Automated messages that re-engage leads and past customers" },
-  { icon: Calendar,      label: "Booking system",               sub: "Customers book and confirm slots without manual coordination" },
-  { icon: Bell,          label: "Lead tracking",                sub: "Every inquiry logged and organized automatically" },
+  { icon: MessageSquare, label: "Reply in 1 second",          sub: "Every message gets answered instantly. WhatsApp and Instagram. 24/7." },
+  { icon: Send,          label: "Auto follow-up",             sub: "We message customers again if they go quiet. Bring them back." },
+  { icon: Calendar,      label: "Easy booking",               sub: "Customer books appointment in WhatsApp. No phone calls." },
+  { icon: Bell,          label: "See all your leads",         sub: "Every message saved. See who messaged and if they bought." },
 ];
 
 const CALL_STEPS = [
-  { icon: Clock,       step: "10 min", label: "We map your current workflow",         body: "How you handle inquiries, bookings, and follow-ups today."        },
-  { icon: CheckCircle, step: "10 min", label: "We identify automation opportunities", body: "Exactly which steps can be systematized and what the impact is."  },
-  { icon: Zap,         step: "10 min", label: "We show you a working example",        body: "A live demo of what your system could look like from day one."    },
+  { icon: Clock,       step: "10 min", label: "We learn how you work now",      body: "How do you reply to messages? How do customers book?"              },
+  { icon: CheckCircle, step: "10 min", label: "We find what to automate",       body: "Which parts can AI do for you? How many sales will you save?"      },
+  { icon: Zap,         step: "10 min", label: "We show you how it works",       body: "See a real example. See how it will work for your business."       },
 ];
 
 function PageHero() {
@@ -29,22 +29,22 @@ function PageHero() {
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
           className="flex items-center gap-3 mb-14">
           <div className="w-6 h-px bg-foreground/15" />
-          <span className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.25em] uppercase">Done-for-You Service</span>
+          <span className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.25em] uppercase">Done-for-You</span>
         </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="text-[clamp(2.5rem,5.5vw,5rem)] font-bold tracking-[-0.05em] leading-[1.0] text-foreground mb-8 max-w-3xl">
-          Done-for-You<br />
-          <span className="text-muted-foreground/25">AI Sales System.</span>
+          We build it for you<br />
+          <span className="text-muted-foreground/25">Ready in 2–3 days</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-base text-muted-foreground leading-relaxed max-w-md mb-14">
-          We install an AI system that converts your inquiries into bookings and sales automatically — so you stop losing customers to slow replies and no follow-up.
+We reply to every message instantly. On WhatsApp and Instagram. Perfect for salons, restaurants, and online shops.
         </motion.p>
 
         <div className="border-t border-border max-w-lg">
@@ -77,7 +77,7 @@ function PageHero() {
           <Link href="/audit"
             className="inline-flex items-center justify-center gap-2.5 border border-border rounded-lg px-5 py-3 text-sm text-foreground hover:bg-secondary transition-colors group">
             <Zap className="h-3.5 w-3.5 text-muted-foreground/50" />
-            <span>Free Revenue Audit first</span>
+            <span>Free WhatsApp Audit first</span>
             <ArrowRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:translate-x-0.5 transition-transform" />
           </Link>
         </motion.div>
@@ -96,10 +96,10 @@ function Pricing() {
         </div>
         <div className="max-w-2xl">
           <p className="text-[clamp(1.8rem,4vw,3rem)] font-bold tracking-[-0.04em] leading-[1.1] text-background/90 mb-4">
-            Starting from $497 setup fee.
+            $30–$150 setup (early stage)
           </p>
           <p className="text-background/45 text-sm leading-relaxed mb-8 max-w-md">
-            One-time setup. Your AI sales system is live in 2–3 days. No monthly fees to start — just a working system that pays for itself.
+Pay once. System ready in 2–3 days. No monthly fees. Just works.
           </p>
           <Link href="#onboarding"
             className="inline-flex items-center gap-2 px-6 py-3 bg-background text-foreground rounded-lg text-sm font-semibold hover:bg-background/90 transition-all">
@@ -142,11 +142,11 @@ function GetStarted() {
               <span className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.25em] uppercase">Book Setup Call</span>
             </div>
             <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-[-0.04em] leading-[1.0] text-foreground mb-6">
-              Get your AI system<br />
+              Get your WhatsApp AI system<br />
               <span className="text-muted-foreground/25">live in 2–3 days.</span>
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed mb-10 max-w-sm">
-              Leave your details and we&apos;ll reach out to schedule your free 30-minute setup call.
+Leave your details. We'll call you. We'll build your system together. Free call.
             </p>
 
             {status === "sent" ? (

@@ -28,14 +28,14 @@ export default function FooterNew() {
           <div>
             <h3 className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.15em] uppercase mb-3">Service</h3>
             <Link
-              href="/automation"
+              href="/call-now"
               className={`text-sm transition-colors ${
-                pathname === "/automation"
+                pathname === "/call-now"
                   ? "text-zinc-900 dark:text-white font-semibold underline underline-offset-2"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              AI Sales System
+              Call Now
             </Link>
           </div>
 
