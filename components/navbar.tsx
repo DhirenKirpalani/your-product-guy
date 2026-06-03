@@ -8,7 +8,7 @@ import { Menu, X } from "lucide-react";
 import LanguageSelector from "@/components/language-selector";
 
 const NAVIGATION = [
-  { name: "Automation", href: "/automation" },
+  { name: "Call Now", href: "/call-now" },
 ];
 
 export default function Navbar() {
@@ -60,7 +60,7 @@ export default function Navbar() {
                   : "border-border text-foreground hover:bg-secondary"
               }`}
             >
-              Free Revenue Audit
+              Free WhatsApp Audit
             </Link>
           </div>
 
@@ -105,7 +105,7 @@ export default function Navbar() {
                     : "border-border text-foreground hover:bg-secondary"
                 }`}
               >
-                Free Revenue Audit
+                Free WhatsApp Audit
               </Link>
             </div>
           </div>

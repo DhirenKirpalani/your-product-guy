@@ -8,11 +8,11 @@ import FooterNew from "@/components/sections/footer-new";
 
 // ─── Operational Flow (animated, cycling) ────────────────────────────────────
 const FLOW_STEPS = [
-  { label: "Customer inquiry",    sub: "WhatsApp message received",   ts: "0ms"  },
-  { label: "System responds",     sub: "Reply sent automatically",    ts: "< 1s" },
-  { label: "Booking confirmed",   sub: "Slot reserved",               ts: "1.2s" },
-  { label: "Reminder scheduled",  sub: "24h before appointment",      ts: "auto" },
-  { label: "Follow-up queued",    sub: "Post-visit sequence active",  ts: "D+1"  },
+  { label: "Customer messages you",  sub: "On WhatsApp or Instagram",    ts: "0ms"  },
+  { label: "AI replies instantly",   sub: "Answer sent in 1 second",     ts: "< 1s" },
+  { label: "AI follows up",          sub: "Keeps customer interested",   ts: "auto" },
+  { label: "Customer books",         sub: "Appointment confirmed",       ts: "2s"   },
+  { label: "You get paid",           sub: "Sale complete",               ts: "done" },
 ];
 
 function OperationalFlow() {
@@ -95,7 +95,7 @@ function Hero() {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}
               className="flex items-center gap-3 mb-8">
               <div className="w-6 h-px bg-foreground/20" />
-              <span className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.2em] uppercase">AI Revenue Recovery</span>
+              <span className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.2em] uppercase">WhatsApp Revenue Recovery</span>
             </motion.div>
 
             <motion.h1
@@ -103,7 +103,7 @@ function Hero() {
               transition={{ duration: 0.6, delay: 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
               className="text-[clamp(2rem,4.5vw,4rem)] font-bold tracking-[-0.04em] leading-[1.05] text-foreground mb-6"
             >
-              Turn customer inquiries into paying customers automatically.
+              Stop losing customers from slow WhatsApp replies
             </motion.h1>
 
             <motion.p
@@ -111,20 +111,14 @@ function Hero() {
               transition={{ duration: 0.5, delay: 0.18 }}
               className="text-base text-muted-foreground leading-relaxed mb-10 max-w-md"
             >
-              We build AI systems that respond, follow up, and convert your leads — so you stop losing sales to slow replies and missed follow-ups.
+We reply to every message instantly. On WhatsApp and Instagram. So you never miss a sale.
             </motion.p>
 
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}
-              className="flex flex-col sm:flex-row gap-3">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}>
               <Link href="/audit"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-foreground text-background rounded-lg text-sm font-semibold hover:bg-foreground/85 transition-all">
                 <Zap className="h-4 w-4" />
-                Get Free Revenue Audit
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-              <Link href="/automation"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border text-foreground rounded-lg text-sm font-medium hover:bg-secondary transition-colors">
-                See How It Works
+                Free WhatsApp Revenue Audit
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </motion.div>
@@ -141,9 +135,9 @@ function Hero() {
 
 // ─── Problem ──────────────────────────────────────────────────────────────────
 const PAIN_POINTS = [
-  { icon: Clock,       label: "Slow replies",          body: "Customers message on WhatsApp or Instagram. No one replies for hours. They go to your competitor instead." },
-  { icon: RefreshCw,   label: "No follow-up",          body: "A customer shows interest then goes quiet. Without a follow-up system, that sale is gone forever." },
-  { icon: MessageSquare, label: "Lost leads",          body: "DMs, WhatsApp chats, Instagram comments — leads slip through every day because there's no system to catch them." },
+  { icon: Clock,       label: "You reply too slow",    body: "Customer messages you. You reply 2 hours later. They already bought from someone else." },
+  { icon: RefreshCw,   label: "You forget to follow up", body: "Customer says 'maybe later'. You forget to message them again. Sale lost." },
+  { icon: MessageSquare, label: "Messages get lost",   body: "WhatsApp, Instagram, comments — too many messages. You miss some. Those are lost sales." },
 ];
 
 function Problem() {
@@ -160,10 +154,10 @@ function Problem() {
             <span className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.2em] uppercase">The Problem</span>
           </div>
           <h2 className="text-[clamp(1.8rem,4vw,3.2rem)] font-bold tracking-[-0.04em] leading-[1.1] text-foreground mb-4">
-            Most businesses lose 30–60% of potential customers.
+You lose half your customers because you reply too slow.
           </h2>
           <p className="text-muted-foreground/60 text-muted-foreground leading-relaxed">
-            Not because of bad products. Because of slow replies, no follow-up, and leads that fall through the cracks.
+Not because your product is bad. Because you don't reply fast enough.
           </p>
         </motion.div>
 
@@ -201,14 +195,14 @@ function Solution() {
           viewport={{ once: true }} transition={{ duration: 0.7 }}
           className="text-[clamp(1.8rem,4vw,3.2rem)] font-bold tracking-[-0.04em] leading-[1.1] text-background/90 max-w-3xl mb-6"
         >
-          We install AI systems that handle replies, follow-ups, and booking automatically.
+We reply to every message in 1 second. Every time.
         </motion.p>
         <motion.p
           initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
           viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
           className="text-background/45 text-base leading-relaxed max-w-xl mb-12"
         >
-          Your business keeps converting leads even when you&apos;re asleep. No manual work. No dropped inquiries. No lost sales.
+Perfect for salons, restaurants, online shops. Customer messages you on Instagram or WhatsApp. We reply instantly. We follow up. We help them book. You get the sale.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }}
@@ -216,7 +210,7 @@ function Solution() {
         >
           <Link href="/audit"
             className="inline-flex items-center gap-2 px-6 py-3 bg-background text-foreground rounded-lg text-sm font-semibold hover:bg-background/90 transition-all">
-            Find out what you&apos;re losing
+            See how many sales you&apos;re missing
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </motion.div>
@@ -227,10 +221,10 @@ function Solution() {
 
 // ─── What You Get ─────────────────────────────────────────────────────────────
 const DELIVERABLES = [
-  { icon: MessageSquare, label: "Instant reply system",   body: "Auto-responds to every WhatsApp and Instagram inquiry in under 1 second — 24/7, no exceptions." },
-  { icon: RefreshCw,     label: "Follow-up automation",   body: "Sequences that re-engage cold leads and past customers so no sale is left on the table." },
-  { icon: Calendar,      label: "Booking flow",           body: "Customers confirm bookings and appointments automatically. No back-and-forth needed." },
-  { icon: BarChart2,     label: "Lead tracking",          body: "Every inquiry logged and organized so you always know where each customer is in the process." },
+  { icon: MessageSquare, label: "Reply in 1 second",      body: "Every message on WhatsApp and Instagram gets answered instantly. 24/7. Never miss anyone." },
+  { icon: RefreshCw,     label: "Auto follow-up",         body: "Customer goes quiet? We message them again automatically. Bring them back." },
+  { icon: Calendar,      label: "Easy booking",           body: "Customer books appointment right in WhatsApp. No phone calls needed." },
+  { icon: BarChart2,     label: "See all your leads",     body: "Every message saved. You see who messaged, when, and if they bought." },
 ];
 
 function WhatYouGet() {
@@ -247,8 +241,8 @@ function WhatYouGet() {
             <span className="text-[10px] font-mono text-muted-foreground/50 tracking-[0.2em] uppercase">What You Get</span>
           </div>
           <h2 className="text-[clamp(1.8rem,4vw,3.2rem)] font-bold tracking-[-0.04em] leading-[1.1] text-foreground">
-            Four systems. One outcome:<br />
-            <span className="text-muted-foreground/30">more paying customers.</span>
+What you get:<br />
+            <span className="text-muted-foreground/30">Never miss a sale again.</span>
           </h2>
         </motion.div>
 
@@ -291,22 +285,17 @@ function FinalCTA() {
             <div className="w-6 h-px bg-foreground/20" />
           </div>
           <h2 className="text-[clamp(2rem,5vw,4rem)] font-bold tracking-[-0.04em] leading-[1.05] text-foreground mb-6">
-            Find out how many customers you&apos;re losing right now.
+See how many sales you're missing right now
           </h2>
           <p className="text-muted-foreground leading-relaxed max-w-lg mx-auto mb-10">
-            Answer 8 questions about your business. We&apos;ll show you exactly where revenue is leaking — and what to do about it.
+Answer 8 simple questions. We'll show you how many customers you lost because you replied too slow.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="flex justify-center">
             <Link href="/audit"
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-foreground text-background rounded-lg text-sm font-semibold hover:bg-foreground/85 transition-all">
               <Zap className="h-4 w-4" />
-              Get Free Revenue Audit
+              Free WhatsApp Revenue Audit
               <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-            <Link href="/automation"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-border text-foreground rounded-lg text-sm font-medium hover:bg-secondary transition-colors">
-              <CheckCircle className="h-4 w-4 text-muted-foreground/50" />
-              View AI Sales System
             </Link>
           </div>
           <p className="text-[10px] font-mono text-muted-foreground/30 mt-6 tracking-[0.1em]">Setup in 2–3 days · No commitment</p>

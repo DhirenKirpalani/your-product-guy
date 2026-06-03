@@ -192,13 +192,13 @@ export default function AuditPage() {
         <div className="mx-auto max-w-3xl px-6 py-12">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-6 h-px bg-foreground/15" />
-            <span className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.25em] uppercase">Free Revenue Tool</span>
+            <span className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.25em] uppercase">Free WhatsApp Audit</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold tracking-[-0.04em] text-foreground leading-tight mb-3">
-            Free Revenue Leak Audit
+            Free WhatsApp Revenue Audit
           </h1>
           <p className="text-muted-foreground/60 text-sm leading-relaxed max-w-md">
-            8 questions. 3 minutes. Find out exactly how many customers you&apos;re losing — and where your revenue is leaking right now.
+See how many sales you're missing. 8 simple questions. 3 minutes. We'll show you how many customers you lost.
           </p>
         </div>
       </section>
@@ -218,10 +218,10 @@ export default function AuditPage() {
                   <Zap className="h-8 w-8 text-foreground/70" />
                 </div>
                 <h2 className="text-2xl font-bold tracking-tight text-foreground mb-3">
-                  How much revenue are you losing right now?
+                  How many customers are you losing on WhatsApp?
                 </h2>
                 <p className="text-sm text-muted-foreground/60 leading-relaxed max-w-sm mx-auto mb-10">
-                  Most businesses lose 30–60% of potential customers due to slow replies and zero follow-up. This audit diagnoses your exact revenue leaks in 3 minutes.
+Most businesses lose half their customers because they reply too slow. This shows you how many you're losing. Takes 3 minutes.
                 </p>
 
                 <div className="grid grid-cols-3 gap-4 mb-10 text-center">
@@ -315,7 +315,7 @@ export default function AuditPage() {
               {/* Score header */}
               <div className="border border-border rounded-2xl bg-white dark:bg-zinc-950 overflow-hidden mb-4">
                 <div className="bg-zinc-900 dark:bg-white px-8 py-10 text-center">
-                  <p className="text-[10px] font-mono text-white/40 dark:text-zinc-900/40 tracking-[0.2em] uppercase mb-4">Your Automation Report</p>
+                  <p className="text-[10px] font-mono text-white/40 dark:text-zinc-900/40 tracking-[0.2em] uppercase mb-4">Your WhatsApp Revenue Report</p>
                   <div className="inline-flex items-center gap-2 bg-white/10 dark:bg-zinc-900/10 border border-white/15 dark:border-zinc-900/15 rounded-full px-4 py-1.5 mb-6">
                     <Zap className="h-3 w-3 text-white dark:text-zinc-900" />
                     <span className="text-xs font-mono text-white dark:text-zinc-900 tracking-wide">{label.text}</span>
@@ -361,10 +361,10 @@ export default function AuditPage() {
               <div className="border border-border rounded-2xl bg-white dark:bg-zinc-950 p-8 mb-4">
                 <p className="text-[10px] font-mono text-muted-foreground/40 tracking-[0.15em] uppercase mb-4">Revenue Leak Diagnosis</p>
                 <p className="text-lg font-bold text-foreground tracking-tight mb-2">
-                  You are likely losing 25–45% of potential customers.
+                  You&apos;re losing 25–45% of customers on WhatsApp.
                 </p>
                 <p className="text-sm text-muted-foreground/60 leading-relaxed mb-5">
-                  Based on your answers: slow follow-up and no automation are costing you real sales every week.
+You reply too slow. You forget to follow up. You're losing sales every single day.
                 </p>
                 <p className="text-sm font-semibold text-foreground">We can fix this in 2–3 days.</p>
               </div>
@@ -372,13 +372,13 @@ export default function AuditPage() {
               {/* CTA */}
               <div className="border border-border rounded-2xl bg-white dark:bg-zinc-950 p-8 text-center">
                 <h3 className="text-xl font-bold tracking-tight text-foreground mb-2">
-                  Stop losing customers. Start recovering revenue.
+                  Stop losing WhatsApp customers. Recover revenue automatically.
                 </h3>
                 <p className="text-sm text-muted-foreground/60 leading-relaxed max-w-sm mx-auto mb-7">
-                  We&apos;ll build your AI sales system in one session. Free setup call — no obligation.
+We'll build your system in 2–3 days. Free call. No commitment.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Link href="/automation#onboarding"
+                  <Link href="/call-now#onboarding"
                     className="inline-flex items-center justify-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-7 py-3 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity">
                     Book Setup Call <ArrowRight className="h-4 w-4" />
                   </Link>
